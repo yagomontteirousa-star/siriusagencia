@@ -24,10 +24,10 @@ export function Header() {
     <header className={`header ${open ? "header--open" : ""}`}>
       <a className="header__logo" href="#" aria-label="Agência Sirius, início">
         <Image
-          src="/brand/logo-sirius-branca.png"
+          src="/brand/logo-sirius-principal.png"
           alt=""
-          width={1200}
-          height={508}
+          width={896}
+          height={407}
           priority
           sizes="150px"
         />
@@ -66,7 +66,7 @@ export function Header() {
             </a>
           ))}
         </nav>
-        <p>Social media &amp; direção criativa</p>
+        <p>Agência Sirius · presença digital com intenção</p>
       </div>
     </header>
   );

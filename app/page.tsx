@@ -2,14 +2,14 @@ import Image from "next/image";
 import { Header } from "@/components/header";
 import { Portfolio } from "@/components/portfolio";
 import { RevealObserver } from "@/components/reveal-observer";
-import { method, services, siteConfig } from "@/data/site";
+import { services, siteConfig } from "@/data/site";
 
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: siteConfig.name,
   url: siteConfig.url,
-  logo: `${siteConfig.url}/brand/logo-sirius-azul.png`,
+  logo: `${siteConfig.url}/brand/logo-sirius-principal.png`,
   description: siteConfig.description,
 };
 
@@ -37,16 +37,11 @@ export default function Home() {
             <span className="hero__ring hero__ring--two" />
           </div>
 
-          <div className="hero__meta reveal">
-            <span>Social media</span>
-            <span>Direção criativa</span>
-          </div>
-
           <div className="hero__content">
             <p className="eyebrow reveal">Presença digital com intenção</p>
             <h1 id="hero-title" className="hero__title reveal">
-              O que faz uma marca ser <em>lembrada</em> acontece antes de
-              publicar.
+              Criatividade e estratégias que fazem a <em>sua marca</em> se
+              destacar.
             </h1>
             <div className="hero__bottom reveal">
               <p className="hero__copy">
@@ -56,7 +51,6 @@ export default function Home() {
               <div className="hero__actions">
                 <a className="button button--light" href="#trabalhos">
                   Ver trabalho
-                  <span aria-hidden="true">↘</span>
                 </a>
                 <a className="text-link text-link--light" href="#contato">
                   Conversar sobre um projeto
@@ -75,10 +69,10 @@ export default function Home() {
 
         <section id="sirius" className="studio" aria-labelledby="studio-title">
           <div className="section-intro studio__intro">
-            <p className="eyebrow reveal">Por trás da Sirius</p>
+            <p className="eyebrow reveal">Oi, eu sou a Bruna</p>
             <h2 id="studio-title" className="section-title reveal">
-              Direção de perto.<br />
-              <em>Presença por inteiro.</em>
+              CEO e a pessoa<br />
+              <em>por trás da Sirius.</em>
             </h2>
           </div>
 
@@ -102,44 +96,35 @@ export default function Home() {
 
             <div className="studio__content">
               <p className="studio__lead reveal">
-                Bruna acompanha cada etapa — da leitura da marca à direção do
-                conteúdo que chega ao público.
+                Eu sou a Bruna, CEO da Sirius, e acompanho cada projeto de
+                perto — da primeira conversa ao conteúdo que chega ao público.
               </p>
               <p className="studio__body reveal">
-                A proximidade mantém o processo simples e a presença coerente:
-                cada escolha conversa com a próxima.
+                Meu trabalho é entender a essência de cada negócio e
+                transformá-la em uma presença digital bonita, estratégica e
+                reconhecível.
               </p>
-
-              <div className="services reveal">
-                <p className="small-label">O que a Sirius cuida</p>
-                <ul>
-                  {services.map((service, index) => (
-                    <li key={service}>
-                      <span>{String(index + 1).padStart(2, "0")}</span>
-                      {service}
-                    </li>
-                  ))}
-                </ul>
-              </div>
             </div>
           </div>
 
-          <div className="method reveal" aria-labelledby="method-title">
-            <div className="method__heading">
-              <p className="small-label">Um caminho claro</p>
-              <h3 id="method-title">Do primeiro olhar à rotina da marca.</h3>
+          <div className="offers" aria-labelledby="offers-title">
+            <div className="offers__heading reveal">
+              <p className="small-label">O que eu faço na Sirius</p>
+              <h3 id="offers-title">Da identidade ao conteúdo em movimento.</h3>
+              <p>
+                Soluções que organizam a presença da marca e aproximam o
+                negócio das pessoas certas.
+              </p>
             </div>
-            <ol className="method__list">
-              {method.map((item) => (
-                <li key={item.step}>
-                  <span>{item.step}</span>
-                  <div>
-                    <h4>{item.title}</h4>
-                    <p>{item.text}</p>
-                  </div>
+            <ul className="offers__bubbles">
+              {services.map((service, index) => (
+                <li className="offers__bubble reveal" key={service.title}>
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <h4>{service.title}</h4>
+                  <p>{service.text}</p>
                 </li>
               ))}
-            </ol>
+            </ul>
           </div>
         </section>
       </main>
@@ -158,7 +143,6 @@ export default function Home() {
             siteConfig.contacts.map((contact) => (
               <a key={contact.href} href={contact.href}>
                 {contact.label}
-                <span aria-hidden="true">↗</span>
               </a>
             ))
           ) : (
@@ -168,10 +152,10 @@ export default function Home() {
 
         <div className="contact__footer">
           <Image
-            src="/brand/logo-sirius-branca.png"
+            src="/brand/logo-sirius-principal.png"
             alt="Agência Sirius"
-            width={1200}
-            height={508}
+            width={896}
+            height={407}
             sizes="180px"
             className="contact__logo"
           />

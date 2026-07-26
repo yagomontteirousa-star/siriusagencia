@@ -1,8 +1,8 @@
 # Agência Sirius
 
-Site one-page da Agência Sirius, construído com Next.js, TypeScript e App
-Router. A experiência é dividida em quatro momentos: apresentação, portfólio,
-Bruna/serviços/método e contato.
+Site one-page mobile-first da Agência Sirius, construído com Next.js,
+TypeScript e App Router. A experiência prioriza a apresentação, o portfólio em
+stories, a Bruna e seus serviços, e o contato.
 
 ## Executar localmente
 
@@ -24,19 +24,22 @@ npm run start
 
 ## Conteúdo e contatos
 
-Textos, serviços, método, projetos e contatos ficam centralizados em
-`data/site.ts`. O array `contacts` está vazio porque nenhum canal oficial foi
-fornecido. Adicione somente links confirmados.
+Textos, serviços, projetos e contatos ficam centralizados em `data/site.ts`.
+Cada serviço é um objeto com `title` e `description`. O array `contacts` está
+vazio porque nenhum canal oficial foi fornecido. Adicione somente links
+confirmados.
 
-O único trabalho disponível nos materiais originais é a identidade da própria
-Sirius. A estrutura de `projects` está pronta para receber projetos reais de
-clientes sem alterar os componentes.
+As imagens atuais são referências visuais da Sirius e aparecem com a indicação
+“Carregar projeto”. A estrutura de `projects` está pronta para receber
+trabalhos reais sem alterar os componentes.
 
 ### Fotos e vídeos nos stories
 
-Os stories usam o array `projects` em `data/site.ts`. Fotos funcionam apenas
-com `src` e `alt`. Para vídeo, coloque o arquivo em `public/portfolio/` e
-adicione `kind: "video"`; `poster` é opcional:
+Os stories usam o array `projects` em `data/site.ts` e são exibidos em duas
+filas contínuas: uma para a esquerda e outra para a direita. Eles não abrem
+modal nem redirecionam para outra galeria. Fotos funcionam apenas com `src` e
+`alt`. Para vídeo, coloque o arquivo em `public/portfolio/` e adicione
+`kind: "video"`; `poster` é opcional:
 
 ```ts
 {
@@ -47,10 +50,16 @@ adicione `kind: "video"`; `poster` é opcional:
 }
 ```
 
+Os vídeos iniciam automaticamente, sem som, em looping e no próprio card.
 Cada objeto adicionado a `projects` entra automaticamente na sequência do
 portfólio com seu próprio `handle`, `profileImage`, título e mídias. O
-`@agenciasirius` atual é somente um texto visual provisório e deve ser trocado
-pelo arroba oficial antes da inclusão dos trabalhos reais.
+`@agenciasirius` atual é provisório e deve ser trocado pelo arroba oficial.
+
+## Logo
+
+A logo principal com fundo transparente está em
+`public/brand/logo-sirius-principal.png` e é usada no cabeçalho, no rodapé e
+nos dados estruturados do site.
 
 ## URL de produção
 

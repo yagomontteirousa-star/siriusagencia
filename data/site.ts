@@ -50,7 +50,7 @@ export const projects: Project[] = [
     description:
       "Exploração cromática da identidade Sirius a partir dos materiais oficiais fornecidos pela marca.",
     handle: "@agenciasirius",
-    profileImage: "/brand/logo-sirius-branca.png",
+    profileImage: "/brand/logo-sirius-principal.png",
     images: [
       {
         src: "/portfolio/sirius-01.webp",
@@ -85,33 +85,36 @@ export const projects: Project[] = [
 ];
 
 export const services = [
-  "Social media",
-  "Direção criativa",
-  "Planejamento de conteúdo",
-  "Design para redes sociais",
-  "Produção de conteúdo",
-  "Fotografia e vídeo",
-];
-
-export const method = [
   {
-    step: "01",
-    title: "Imersão",
-    text: "A marca, o momento e o que precisa ser reconhecido.",
+    title: "Gestão de redes sociais",
+    text: "Planejamento e conteúdo para manter a marca presente.",
   },
   {
-    step: "02",
-    title: "Direção",
-    text: "Uma linha visual e narrativa para orientar cada decisão.",
+    title: "Identidade visual",
+    text: "Cores, tipografia e elementos que geram reconhecimento.",
   },
   {
-    step: "03",
-    title: "Criação",
-    text: "Conteúdo pensado como conjunto, não como peças soltas.",
+    title: "Design gráfico",
+    text: "Peças digitais e impressas com unidade visual.",
   },
   {
-    step: "04",
-    title: "Acompanhamento",
-    text: "Consistência para a presença continuar viva e coerente.",
+    title: "Websites",
+    text: "Sites responsivos, claros e alinhados à marca.",
+  },
+  {
+    title: "Perfil da Empresa no Google",
+    text: "Perfil organizado para facilitar buscas e contatos.",
+  },
+  {
+    title: "Tráfego pago",
+    text: "Campanhas para ampliar alcance e gerar oportunidades.",
+  },
+  {
+    title: "Videomaker mobile",
+    text: "Vídeos ágeis e naturais para redes e campanhas.",
+  },
+  {
+    title: "StoryMaker de eventos e corporativo",
+    text: "Eventos, bastidores e rotina da empresa em tempo real.",
   },
 ];

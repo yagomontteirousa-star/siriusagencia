@@ -5,16 +5,16 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
-  title: "Agência Sirius | Social media com direção",
+  title: "Agência Sirius | Criatividade e estratégia para marcas",
   description:
-    "Social media, direção criativa e produção de conteúdo com intenção, consistência e identidade.",
+    "Estratégia, identidade, conteúdo e presença digital para fazer a sua marca se destacar.",
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Agência Sirius | Social media com direção",
+    title: "Agência Sirius | Criatividade e estratégia para marcas",
     description:
-      "Direção, narrativa e presença digital para marcas que querem ser reconhecidas.",
+      "Estratégia, identidade e conteúdo para fazer a sua marca se destacar.",
     url: "/",
     siteName: siteConfig.name,
     locale: siteConfig.locale,
@@ -30,9 +30,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Agência Sirius | Social media com direção",
+    title: "Agência Sirius | Criatividade e estratégia para marcas",
     description:
-      "Direção, narrativa e presença digital para marcas que querem ser reconhecidas.",
+      "Estratégia, identidade e conteúdo para fazer a sua marca se destacar.",
     images: ["/opengraph-image.jpg"],
   },
 };
