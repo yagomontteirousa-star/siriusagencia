@@ -1,0 +1,12 @@
+.next
+out
+*.log
+.env*
+!.env.example
+node_modules
+.vercel
+*.tsbuildinfo
+screenshots
+/*.jpeg
+/*.png
+public/images/bruna-sirius.jpg
