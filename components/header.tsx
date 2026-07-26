@@ -24,7 +24,7 @@ export function Header() {
     <header className={`header ${open ? "header--open" : ""}`}>
       <a className="header__logo" href="#" aria-label="Agência Sirius, início">
         <Image
-          src="/brand/logo-sirius-branca.png"
+          src="/brand/logo-sirius-laranja.png"
           alt=""
           width={1200}
           height={508}
