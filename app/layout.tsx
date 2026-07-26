@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
+import { EntryLoader } from "@/components/entry-loader";
 import { siteConfig } from "@/data/site";
 import "./globals.css";
 
@@ -53,7 +54,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           }}
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <EntryLoader />
+        {children}
+      </body>
     </html>
   );
 }
