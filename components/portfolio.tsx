@@ -60,36 +60,21 @@ function StoryCard({
             aria-label={media.alt}
           />
         ) : (
-          <>
-            <Image
-              className="portfolio__story-backdrop"
-              src={media.src}
-              alt=""
-              fill
-              sizes="(max-width: 767px) 46vw, 15vw"
-              aria-hidden="true"
-            />
-            <Image
-              className="portfolio__story-image"
-              src={media.src}
-              alt={duplicate ? "" : media.alt}
-              fill
-              sizes="(max-width: 767px) 46vw, 15vw"
-            />
-          </>
+          <Image
+            className="portfolio__story-image"
+            src={media.src}
+            alt={duplicate ? "" : media.alt}
+            fill
+            sizes="(max-width: 767px) 58vw, 15vw"
+          />
         )}
       </span>
 
       <span className="portfolio__story-profile" aria-hidden="true">
-        <span className="portfolio__story-avatar">
-          <Image
-            src={project.profileImage}
-            alt=""
-            width={96}
-            height={44}
-            sizes="34px"
-          />
-        </span>
+        <span
+          className="portfolio__story-avatar"
+          style={{ backgroundImage: `url("${project.profileImage}")` }}
+        />
         <span className="portfolio__story-account">
           <strong>{project.handle}</strong>
           <small>portfólio Sirius</small>

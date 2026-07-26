@@ -96,13 +96,13 @@ export default function Home() {
 
             <div className="studio__content">
               <p className="studio__lead reveal">
-                Eu sou a Bruna, CEO da Sirius, e acompanho cada projeto de
-                perto — da primeira conversa ao conteúdo que chega ao público.
+                Sou Bruna, CEO da Sirius. À frente de cada projeto, uno escuta,
+                estratégia e direção criativa para revelar o que torna cada
+                negócio único.
               </p>
               <p className="studio__body reveal">
-                Meu trabalho é entender a essência de cada negócio e
-                transformá-la em uma presença digital bonita, estratégica e
-                reconhecível.
+                Da ideia à entrega, traduzo essa essência em escolhas visuais e
+                conteúdos que criam reconhecimento e conexão.
               </p>
             </div>
           </div>
@@ -110,16 +110,15 @@ export default function Home() {
           <div className="offers" aria-labelledby="offers-title">
             <div className="offers__heading reveal">
               <p className="small-label">O que eu faço na Sirius</p>
-              <h3 id="offers-title">Da identidade ao conteúdo em movimento.</h3>
+              <h3 id="offers-title">Sua marca, cuidada por inteiro.</h3>
               <p>
-                Soluções que organizam a presença da marca e aproximam o
-                negócio das pessoas certas.
+                Estratégia, imagem e conteúdo trabalhando juntos para construir
+                uma presença coerente.
               </p>
             </div>
             <ul className="offers__bubbles">
-              {services.map((service, index) => (
+              {services.map((service) => (
                 <li className="offers__bubble reveal" key={service.title}>
-                  <span>{String(index + 1).padStart(2, "0")}</span>
                   <h4>{service.title}</h4>
                   <p>{service.text}</p>
                 </li>
@@ -135,7 +134,7 @@ export default function Home() {
         </div>
         <p className="eyebrow reveal">Novos projetos</p>
         <h2 id="contact-title" className="contact__title reveal">
-          Vamos dar intenção ao que a sua marca <em>mostra?</em>
+          Vamos transformar sua próxima ideia em uma presença <em>marcante?</em>
         </h2>
 
         <div className="contact__channels reveal">
