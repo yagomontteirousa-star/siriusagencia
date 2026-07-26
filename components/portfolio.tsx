@@ -24,8 +24,9 @@ export function Portfolio() {
     }
   }, []);
 
-  const openProject = useCallback((index: number) => {
-    returnFocusRef.current = document.activeElement as HTMLElement;
+  const openProject = useCallback((index: number, trigger?: HTMLElement) => {
+    returnFocusRef.current =
+      trigger ?? (document.activeElement as HTMLElement);
     setActiveImage(index);
     if (window.location.hash !== `#${project.slug}`) {
       window.history.pushState({ project: project.slug }, "", `#${project.slug}`);
@@ -134,38 +135,101 @@ export function Portfolio() {
           <p>{project.title}</p>
           <span>{project.category}</span>
         </div>
-        <button type="button" onClick={() => openProject(0)}>
+        <button
+          type="button"
+          onClick={(event) => openProject(0, event.currentTarget)}
+        >
           Abrir galeria
           <span aria-hidden="true">↗</span>
         </button>
       </div>
 
-      <div className="portfolio__grid">
-        {project.images.map((image, index) => (
-          <button
-            className={`portfolio__item portfolio__item--${index + 1} reveal`}
-            type="button"
-            key={image.src}
-            onClick={() => openProject(index)}
-            aria-label={`Abrir ${project.title}, imagem ${index + 1} de ${project.images.length}`}
-          >
-            <Image
-              src={image.src}
-              alt={image.alt}
-              width={1400}
-              height={1400}
-              sizes={
-                index === 0
-                  ? "(max-width: 767px) 100vw, 72vw"
-                  : "(max-width: 767px) 100vw, 45vw"
-              }
-            />
-            <span className="portfolio__item-index" aria-hidden="true">
-              / {String(index + 1).padStart(2, "0")}
-            </span>
-          </button>
-        ))}
+      <div className="portfolio__stories reveal">
+        <div className="portfolio__story-track">
+          {[0, 1].map((groupIndex) => (
+            <div
+              className="portfolio__story-group"
+              key={groupIndex}
+              aria-hidden={groupIndex === 1 ? "true" : undefined}
+            >
+              {project.images.map((media, index) => (
+                <button
+                  className="portfolio__story"
+                  type="button"
+                  key={`${groupIndex}-${media.src}`}
+                  onPointerDown={(event) => {
+                    if (event.button === 0) {
+                      openProject(index, event.currentTarget);
+                    }
+                  }}
+                  onClick={(event) => {
+                    if (event.detail === 0) {
+                      openProject(index, event.currentTarget);
+                    }
+                  }}
+                  tabIndex={groupIndex === 1 ? -1 : 0}
+                  aria-label={
+                    groupIndex === 0
+                      ? `Abrir ${project.title}, mídia ${index + 1} de ${project.images.length}`
+                      : undefined
+                  }
+                >
+                  <span className="portfolio__story-progress" aria-hidden="true">
+                    <span />
+                    <span />
+                    <span />
+                  </span>
+
+                  <span className="portfolio__story-media">
+                    {media.kind === "video" ? (
+                      <video
+                        src={media.src}
+                        poster={media.poster}
+                        muted
+                        loop
+                        autoPlay
+                        playsInline
+                        preload="metadata"
+                        aria-label={media.alt}
+                      />
+                    ) : (
+                      <>
+                        <Image
+                          className="portfolio__story-backdrop"
+                          src={media.src}
+                          alt=""
+                          fill
+                          sizes="(max-width: 767px) 44vw, 15vw"
+                          aria-hidden="true"
+                        />
+                        <Image
+                          className="portfolio__story-image"
+                          src={media.src}
+                          alt={media.alt}
+                          fill
+                          sizes="(max-width: 767px) 44vw, 15vw"
+                        />
+                      </>
+                    )}
+                  </span>
+
+                  <span className="portfolio__story-topline" aria-hidden="true">
+                    <span>Sirius</span>
+                    <span>{String(index + 1).padStart(2, "0")}</span>
+                  </span>
+                  <span className="portfolio__story-caption" aria-hidden="true">
+                    {media.kind === "video" ? "Assistir" : "Ver imagem"}
+                    <span>↗</span>
+                  </span>
+                </button>
+              ))}
+            </div>
+          ))}
+        </div>
       </div>
+      <p className="portfolio__stories-note reveal">
+        Fotos e vídeos em fluxo contínuo. Passe o cursor para pausar.
+      </p>
 
       {activeImage !== null && (
         <div
@@ -201,14 +265,25 @@ export function Portfolio() {
             </header>
 
             <div className="project-modal__media">
-              <Image
-                src={project.images[activeImage].src}
-                alt={project.images[activeImage].alt}
-                width={1400}
-                height={1400}
-                sizes="(max-width: 767px) 100vw, 76vw"
-                priority
-              />
+              {project.images[activeImage].kind === "video" ? (
+                <video
+                  src={project.images[activeImage].src}
+                  poster={project.images[activeImage].poster}
+                  controls
+                  autoPlay
+                  playsInline
+                  aria-label={project.images[activeImage].alt}
+                />
+              ) : (
+                <Image
+                  src={project.images[activeImage].src}
+                  alt={project.images[activeImage].alt}
+                  width={1400}
+                  height={1400}
+                  sizes="(max-width: 767px) 100vw, 76vw"
+                  priority
+                />
+              )}
             </div>
 
             <footer className="project-modal__footer">

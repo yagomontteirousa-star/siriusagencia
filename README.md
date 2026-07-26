@@ -32,6 +32,21 @@ O único trabalho disponível nos materiais originais é a identidade da própri
 Sirius. A estrutura de `projects` está pronta para receber projetos reais de
 clientes sem alterar os componentes.
 
+### Fotos e vídeos nos stories
+
+Os stories usam o array `projects[0].images` em `data/site.ts`. Fotos funcionam
+apenas com `src` e `alt`. Para vídeo, coloque o arquivo em `public/portfolio/`
+e adicione `kind: "video"`; `poster` é opcional:
+
+```ts
+{
+  src: "/portfolio/bastidores.mp4",
+  poster: "/portfolio/bastidores-capa.webp",
+  alt: "Bastidores de uma produção da Sirius",
+  kind: "video",
+}
+```
+
 ## URL de produção
 
 Copie `.env.example` para `.env.local` e informe o domínio real:

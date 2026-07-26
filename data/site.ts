@@ -1,6 +1,8 @@
 export type ProjectImage = {
   src: string;
   alt: string;
+  kind?: "image" | "video";
+  poster?: string;
 };
 
 export type Project = {
