@@ -2,7 +2,7 @@
 
 Site one-page da Agência Sirius, construído com Next.js, TypeScript e App
 Router. A experiência é dividida em quatro momentos: apresentação, portfólio,
-Bruna/serviços e contato.
+Bruna/serviços/método e contato.
 
 ## Executar localmente
 
@@ -24,18 +24,9 @@ npm run start
 
 ## Conteúdo e contatos
 
-Textos, serviços, projetos e contatos ficam centralizados em `data/site.ts`.
-Os contatos são montados a partir das variáveis abaixo porque nenhum canal
-oficial foi fornecido:
-
-```bash
-NEXT_PUBLIC_WHATSAPP_NUMBER=5511999999999
-NEXT_PUBLIC_INSTAGRAM_URL=https://instagram.com/seu-perfil
-NEXT_PUBLIC_CONTACT_EMAIL=contato@seu-dominio.com.br
-```
-
-Sem `NEXT_PUBLIC_WHATSAPP_NUMBER`, o botão flutuante permanece visível em
-estado pendente e não cria um link falso. Adicione somente dados confirmados.
+Textos, serviços, método, projetos e contatos ficam centralizados em
+`data/site.ts`. O array `contacts` está vazio porque nenhum canal oficial foi
+fornecido. Adicione somente links confirmados.
 
 O único trabalho disponível nos materiais originais é a identidade da própria
 Sirius. A estrutura de `projects` está pronta para receber projetos reais de
@@ -59,8 +50,7 @@ adicione `kind: "video"`; `poster` é opcional:
 Cada objeto adicionado a `projects` entra automaticamente na sequência do
 portfólio com seu próprio `handle`, `profileImage`, título e mídias. O
 `@agenciasirius` atual é somente um texto visual provisório e deve ser trocado
-pelo arroba oficial antes da inclusão dos trabalhos reais. A assinatura
-principal usa a versão laranja derivada do arquivo de marca número 6.
+pelo arroba oficial antes da inclusão dos trabalhos reais.
 
 ## URL de produção
 

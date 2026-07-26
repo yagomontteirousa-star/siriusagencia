@@ -19,52 +19,13 @@ export type Project = {
 };
 
 export type Contact = {
-  kind: "whatsapp" | "instagram" | "email";
   label: string;
   href: string;
-  external?: boolean;
 };
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ??
   "http://localhost:3000";
-
-const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER?.replace(
-  /\D/g,
-  "",
-);
-const instagramUrl = process.env.NEXT_PUBLIC_INSTAGRAM_URL?.trim();
-const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim();
-
-const contacts: Contact[] = [];
-
-if (whatsappNumber) {
-  contacts.push({
-    kind: "whatsapp",
-    label: "WhatsApp",
-    href: `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-      "Olá, Bruna! Conheci a Sirius pelo site e gostaria de conversar sobre um projeto.",
-    )}`,
-    external: true,
-  });
-}
-
-if (instagramUrl) {
-  contacts.push({
-    kind: "instagram",
-    label: "Instagram",
-    href: instagramUrl,
-    external: true,
-  });
-}
-
-if (contactEmail) {
-  contacts.push({
-    kind: "email",
-    label: contactEmail,
-    href: `mailto:${contactEmail}`,
-  });
-}
 
 export const siteConfig = {
   name: "Agência Sirius",
@@ -73,7 +34,7 @@ export const siteConfig = {
   locale: "pt_BR",
   description:
     "Agência feminina de social media, direção criativa e produção de conteúdo.",
-  contacts,
+  contacts: [] as Contact[],
   navigation: [
     { label: "Trabalhos", href: "#trabalhos" },
     { label: "Sirius", href: "#sirius" },
@@ -89,7 +50,7 @@ export const projects: Project[] = [
     description:
       "Exploração cromática da identidade Sirius a partir dos materiais oficiais fornecidos pela marca.",
     handle: "@agenciasirius",
-    profileImage: "/brand/logo-sirius-laranja.png",
+    profileImage: "/brand/logo-sirius-branca.png",
     images: [
       {
         src: "/portfolio/sirius-01.webp",
@@ -124,28 +85,33 @@ export const projects: Project[] = [
 ];
 
 export const services = [
+  "Social media",
+  "Direção criativa",
+  "Planejamento de conteúdo",
+  "Design para redes sociais",
+  "Produção de conteúdo",
+  "Fotografia e vídeo",
+];
+
+export const method = [
   {
-    title: "Social media",
-    text: "Gestão da presença digital com constância, intenção e uma rotina que mantém a marca viva.",
+    step: "01",
+    title: "Imersão",
+    text: "A marca, o momento e o que precisa ser reconhecido.",
   },
   {
-    title: "Direção criativa",
-    text: "Uma linha visual e narrativa clara para orientar campanhas, conteúdos e cada escolha da marca.",
+    step: "02",
+    title: "Direção",
+    text: "Uma linha visual e narrativa para orientar cada decisão.",
   },
   {
-    title: "Planejamento",
-    text: "Temas, formatos e calendário organizados para o conteúdo fazer sentido como um todo.",
+    step: "03",
+    title: "Criação",
+    text: "Conteúdo pensado como conjunto, não como peças soltas.",
   },
   {
-    title: "Design para redes",
-    text: "Peças que traduzem a identidade da marca e criam reconhecimento em cada publicação.",
-  },
-  {
-    title: "Produção de conteúdo",
-    text: "Da ideia à entrega, conteúdos pensados para comunicar com naturalidade e personalidade.",
-  },
-  {
-    title: "Fotografia e vídeo",
-    text: "Imagens reais da marca, dos produtos e dos bastidores com olhar criativo e direção.",
+    step: "04",
+    title: "Acompanhamento",
+    text: "Consistência para a presença continuar viva e coerente.",
   },
 ];

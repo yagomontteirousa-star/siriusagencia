@@ -23,7 +23,7 @@ export function RevealObserver() {
           }
         });
       },
-      { threshold: 0.14, rootMargin: "0px 0px -10% 0px" },
+      { threshold: 0.12, rootMargin: "0px 0px -6% 0px" },
     );
 
     elements.forEach((element) => observer.observe(element));
