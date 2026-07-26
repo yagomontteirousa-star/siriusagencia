@@ -3198,6 +3198,33 @@ main#conteudo {
   line-height: 0.91;
 }
 
+.portfolio__signature {
+  display: flex;
+  width: min(100%, 18rem);
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  margin: 1.65rem auto 0;
+  padding-block: 0.85rem;
+  border-top: 1px solid rgba(7, 106, 121, 0.16);
+  border-bottom: 1px solid rgba(7, 106, 121, 0.16);
+  color: var(--blue);
+  font-size: 0.62rem;
+  letter-spacing: 0.11em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.portfolio__signature-mark {
+  display: block;
+  width: 0.42rem;
+  aspect-ratio: 1;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--orange);
+  box-shadow: 0 0 0 0.28rem rgba(243, 152, 82, 0.12);
+}
+
 .portfolio__note {
   max-width: 28rem;
   grid-template-columns: 1fr;
@@ -3573,12 +3600,21 @@ main#conteudo {
     transform 380ms var(--ease);
 }
 
+.offers__bubble,
+.offers__bubble:nth-child(3n) {
+  border-color: rgba(7, 106, 121, 0.16);
+  background: #fff;
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.95),
+    0 0.9rem 2rem rgba(4, 81, 93, 0.09);
+}
+
 .offers__bubble:nth-child(even) {
   border-radius: 3.5rem 1.35rem 3.5rem 3.5rem;
 }
 
 .offers__bubble:nth-child(3n) {
-  background: rgba(255, 246, 236, 0.9);
+  background: #fff;
 }
 
 .offers__bubble h4 {
@@ -3827,36 +3863,20 @@ main#conteudo {
     align-self: center;
     margin: 0;
     padding: 0;
-    text-align: left;
+    text-align: center;
   }
 
   .portfolio__header > div:first-child {
     width: 100%;
   }
 
-  .portfolio__header .portfolio__note {
-    display: block;
-    max-width: 20rem;
-    margin-top: 1.7rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--line-dark);
-  }
-
-  .portfolio__header .portfolio__note span {
-    display: block;
-    margin-bottom: 0.55rem;
-    color: var(--blue);
-    font-size: 0.58rem;
-    letter-spacing: 0.13em;
-    text-transform: uppercase;
+  .portfolio__header .portfolio__signature {
+    margin-right: auto;
+    margin-left: auto;
   }
 
   .portfolio .section-title {
     font-size: clamp(3.4rem, 5.3vw, 5.1rem);
-  }
-
-  .portfolio__note {
-    text-align: left;
   }
 
   .portfolio__stories-stage {
@@ -3871,7 +3891,7 @@ main#conteudo {
     grid-row: 2;
     width: auto;
     margin: 1.2rem 0 0;
-    text-align: left;
+    text-align: center;
   }
 
   .portfolio__project-meta {

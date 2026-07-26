@@ -96,13 +96,14 @@ export default function Home() {
 
             <div className="studio__content">
               <p className="studio__lead reveal">
-                Sou Bruna, CEO da Sirius. À frente de cada projeto, uno escuta,
-                estratégia e direção criativa para revelar o que torna cada
-                negócio único.
+                Sou Bruna e gosto de estar perto do processo — ouvindo,
+                organizando ideias e encontrando o fio que torna cada negócio
+                único.
               </p>
               <p className="studio__body reveal">
-                Da ideia à entrega, traduzo essa essência em escolhas visuais e
-                conteúdos que criam reconhecimento e conexão.
+                Meu olhar transforma essa essência em escolhas visuais e
+                conteúdos que criam reconhecimento, conexão e vontade de
+                acompanhar.
               </p>
             </div>
           </div>

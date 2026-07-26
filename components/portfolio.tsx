@@ -144,16 +144,13 @@ export function Portfolio() {
         <div>
           <p className="eyebrow reveal">Portfólio em movimento</p>
           <h2 id="portfolio-title" className="section-title reveal">
-            O trabalho aparece<br />
-            <em>como ele vive.</em>
+            Ideias que ganham<br />
+            <em>forma e presença.</em>
           </h2>
         </div>
-        <div className="portfolio__note reveal">
-          <span>Fotos + vídeos</span>
-          <p>
-            Aqui entram stories, campanhas, identidades, eventos e bastidores
-            reais produzidos pela Sirius.
-          </p>
+        <div className="portfolio__signature reveal">
+          <span className="portfolio__signature-mark" aria-hidden="true" />
+          <p>Stories · identidades · bastidores</p>
         </div>
       </div>
 
