@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 const MINIMUM_TIME = 780;
-const MAXIMUM_TIME = 2800;
+const MAXIMUM_TIME = 5000;
 
 export function EntryLoader() {
   const [state, setState] = useState<"visible" | "leaving">("visible");

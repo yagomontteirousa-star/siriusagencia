@@ -2675,7 +2675,7 @@ html {
 }
 
 .entry-loader[data-state="visible"] {
-  animation: entry-loader-hard-stop 3s linear both;
+  animation: entry-loader-hard-stop 5s linear both;
 }
 
 .entry-loader::before,
@@ -2779,7 +2779,7 @@ html {
   background: var(--orange);
   content: "";
   transform-origin: left;
-  animation: entry-loader-line 2.45s var(--ease) both;
+  animation: entry-loader-line 4.45s var(--ease) both;
 }
 
 @keyframes entry-star-pulse {
