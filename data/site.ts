@@ -3,6 +3,9 @@ export type ProjectImage = {
   alt: string;
   kind?: "image" | "video";
   poster?: string;
+  fit?: "cover" | "contain";
+  client?: string;
+  label?: string;
 };
 
 export type Project = {
@@ -10,6 +13,8 @@ export type Project = {
   title: string;
   category: string;
   description: string;
+  handle: string;
+  profileImage: string;
   images: ProjectImage[];
 };
 
@@ -44,6 +49,8 @@ export const projects: Project[] = [
     category: "Sistema visual da marca",
     description:
       "Exploração cromática da identidade Sirius a partir dos materiais oficiais fornecidos pela marca.",
+    handle: "@agenciasirius",
+    profileImage: "/brand/logo-sirius-branca.png",
     images: [
       {
         src: "/portfolio/sirius-01.webp",

@@ -22,6 +22,14 @@ export default function Home() {
       <Header />
       <main id="conteudo">
         <section className="hero" aria-labelledby="hero-title">
+          <div className="hero__universe" aria-hidden="true">
+            <span className="hero__star-layer hero__star-layer--far" />
+            <span className="hero__star-layer hero__star-layer--near" />
+            <span className="hero__shooting-star hero__shooting-star--one" />
+            <span className="hero__shooting-star hero__shooting-star--two" />
+            <span className="hero__shooting-star hero__shooting-star--three" />
+          </div>
+
           <div className="hero__orbit" aria-hidden="true">
             <span className="hero__point hero__point--primary" />
             <span className="hero__point hero__point--secondary" />

@@ -4,7 +4,14 @@ import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { projects } from "@/data/site";
 
-const project = projects[0];
+const featuredProject = projects[0];
+const storyItems = projects.flatMap((project) =>
+  project.images.map((media, mediaIndex) => ({
+    project,
+    media,
+    mediaIndex,
+  })),
+);
 
 export function Portfolio() {
   const [activeImage, setActiveImage] = useState<number | null>(null);
@@ -17,19 +24,30 @@ export function Portfolio() {
   }, []);
 
   const requestClose = useCallback(() => {
-    if (window.location.hash === `#${project.slug}`) {
+    const currentProject =
+      activeImage === null ? null : storyItems[activeImage]?.project;
+
+    if (
+      currentProject &&
+      window.location.hash === `#${currentProject.slug}`
+    ) {
       window.history.back();
     } else {
       setActiveImage(null);
     }
-  }, []);
+  }, [activeImage]);
 
   const openProject = useCallback((index: number, trigger?: HTMLElement) => {
     returnFocusRef.current =
       trigger ?? (document.activeElement as HTMLElement);
     setActiveImage(index);
-    if (window.location.hash !== `#${project.slug}`) {
-      window.history.pushState({ project: project.slug }, "", `#${project.slug}`);
+    const targetProject = storyItems[index].project;
+    if (window.location.hash !== `#${targetProject.slug}`) {
+      window.history.pushState(
+        { project: targetProject.slug },
+        "",
+        `#${targetProject.slug}`,
+      );
     }
   }, []);
 
@@ -37,13 +55,13 @@ export function Portfolio() {
     setActiveImage((current) =>
       current === null
         ? 0
-        : (current - 1 + project.images.length) % project.images.length,
+        : (current - 1 + storyItems.length) % storyItems.length,
     );
   }, []);
 
   const next = useCallback(() => {
     setActiveImage((current) =>
-      current === null ? 0 : (current + 1) % project.images.length,
+      current === null ? 0 : (current + 1) % storyItems.length,
     );
   }, []);
 
@@ -107,6 +125,9 @@ export function Portfolio() {
     touchStartRef.current = null;
   };
 
+  const activeStory =
+    activeImage === null ? null : storyItems[activeImage];
+
   return (
     <section
       id="trabalhos"
@@ -132,8 +153,8 @@ export function Portfolio() {
 
       <div className="portfolio__project-meta reveal">
         <div>
-          <p>{project.title}</p>
-          <span>{project.category}</span>
+          <p>{featuredProject.title}</p>
+          <span>{featuredProject.category}</span>
         </div>
         <button
           type="button"
@@ -152,11 +173,11 @@ export function Portfolio() {
               key={groupIndex}
               aria-hidden={groupIndex === 1 ? "true" : undefined}
             >
-              {project.images.map((media, index) => (
+              {storyItems.map(({ project, media, mediaIndex }, index) => (
                 <button
                   className="portfolio__story"
                   type="button"
-                  key={`${groupIndex}-${media.src}`}
+                  key={`${groupIndex}-${project.slug}-${media.src}`}
                   onPointerDown={(event) => {
                     if (event.button === 0) {
                       openProject(index, event.currentTarget);
@@ -170,17 +191,30 @@ export function Portfolio() {
                   tabIndex={groupIndex === 1 ? -1 : 0}
                   aria-label={
                     groupIndex === 0
-                      ? `Abrir ${project.title}, mídia ${index + 1} de ${project.images.length}`
+                      ? `Abrir ${project.title}, mídia ${mediaIndex + 1} de ${project.images.length}`
                       : undefined
                   }
                 >
                   <span className="portfolio__story-progress" aria-hidden="true">
-                    <span />
-                    <span />
-                    <span />
+                    {project.images.map((_, progressIndex) => (
+                      <span
+                        className={
+                          progressIndex <= mediaIndex
+                            ? "portfolio__story-progress-segment portfolio__story-progress-segment--seen"
+                            : "portfolio__story-progress-segment"
+                        }
+                        key={progressIndex}
+                      />
+                    ))}
                   </span>
 
-                  <span className="portfolio__story-media">
+                  <span
+                    className={`portfolio__story-media ${
+                      media.fit === "cover"
+                        ? "portfolio__story-media--cover"
+                        : ""
+                    }`}
+                  >
                     {media.kind === "video" ? (
                       <video
                         src={media.src}
@@ -213,13 +247,32 @@ export function Portfolio() {
                     )}
                   </span>
 
-                  <span className="portfolio__story-topline" aria-hidden="true">
-                    <span>Sirius</span>
-                    <span>{String(index + 1).padStart(2, "0")}</span>
+                  <span className="portfolio__story-profile" aria-hidden="true">
+                    <span className="portfolio__story-avatar">
+                      <Image
+                        src={project.profileImage}
+                        alt=""
+                        width={64}
+                        height={64}
+                        sizes="32px"
+                      />
+                    </span>
+                    <span className="portfolio__story-account">
+                      <strong>{project.handle}</strong>
+                      <small>agora</small>
+                    </span>
+                    <span className="portfolio__story-more">•••</span>
                   </span>
-                  <span className="portfolio__story-caption" aria-hidden="true">
-                    {media.kind === "video" ? "Assistir" : "Ver imagem"}
-                    <span>↗</span>
+
+                  <span className="portfolio__story-project" aria-hidden="true">
+                    <strong>{media.client ?? project.title}</strong>
+                    <small>{media.label ?? project.category}</small>
+                  </span>
+
+                  <span className="portfolio__story-actions" aria-hidden="true">
+                    <span>Enviar mensagem</span>
+                    <span className="portfolio__story-action-icon">♡</span>
+                    <span className="portfolio__story-action-icon">↗</span>
                   </span>
                 </button>
               ))}
@@ -231,7 +284,7 @@ export function Portfolio() {
         Fotos e vídeos em fluxo contínuo. Passe o cursor para pausar.
       </p>
 
-      {activeImage !== null && (
+      {activeStory !== null && activeImage !== null && (
         <div
           className="project-modal"
           role="presentation"
@@ -250,8 +303,8 @@ export function Portfolio() {
           >
             <header className="project-modal__header">
               <div>
-                <p id="modal-title">{project.title}</p>
-                <span>{project.category}</span>
+                <p id="modal-title">{activeStory.project.title}</p>
+                <span>{activeStory.project.category}</span>
               </div>
               <button
                 type="button"
@@ -265,19 +318,19 @@ export function Portfolio() {
             </header>
 
             <div className="project-modal__media">
-              {project.images[activeImage].kind === "video" ? (
+              {activeStory.media.kind === "video" ? (
                 <video
-                  src={project.images[activeImage].src}
-                  poster={project.images[activeImage].poster}
+                  src={activeStory.media.src}
+                  poster={activeStory.media.poster}
                   controls
                   autoPlay
                   playsInline
-                  aria-label={project.images[activeImage].alt}
+                  aria-label={activeStory.media.alt}
                 />
               ) : (
                 <Image
-                  src={project.images[activeImage].src}
-                  alt={project.images[activeImage].alt}
+                  src={activeStory.media.src}
+                  alt={activeStory.media.alt}
                   width={1400}
                   height={1400}
                   sizes="(max-width: 767px) 100vw, 76vw"
@@ -287,14 +340,14 @@ export function Portfolio() {
             </div>
 
             <footer className="project-modal__footer">
-              <p>{project.description}</p>
+              <p>{activeStory.project.description}</p>
               <div className="project-modal__controls">
                 <button type="button" onClick={previous} aria-label="Imagem anterior">
                   ←
                 </button>
                 <span aria-live="polite">
                   {String(activeImage + 1).padStart(2, "0")} /{" "}
-                  {String(project.images.length).padStart(2, "0")}
+                  {String(storyItems.length).padStart(2, "0")}
                 </span>
                 <button type="button" onClick={next} aria-label="Próxima imagem">
                   →

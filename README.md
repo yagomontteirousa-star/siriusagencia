@@ -34,9 +34,9 @@ clientes sem alterar os componentes.
 
 ### Fotos e vídeos nos stories
 
-Os stories usam o array `projects[0].images` em `data/site.ts`. Fotos funcionam
-apenas com `src` e `alt`. Para vídeo, coloque o arquivo em `public/portfolio/`
-e adicione `kind: "video"`; `poster` é opcional:
+Os stories usam o array `projects` em `data/site.ts`. Fotos funcionam apenas
+com `src` e `alt`. Para vídeo, coloque o arquivo em `public/portfolio/` e
+adicione `kind: "video"`; `poster` é opcional:
 
 ```ts
 {
@@ -46,6 +46,11 @@ e adicione `kind: "video"`; `poster` é opcional:
   kind: "video",
 }
 ```
+
+Cada objeto adicionado a `projects` entra automaticamente na sequência do
+portfólio com seu próprio `handle`, `profileImage`, título e mídias. O
+`@agenciasirius` atual é somente um texto visual provisório e deve ser trocado
+pelo arroba oficial antes da inclusão dos trabalhos reais.
 
 ## URL de produção
 
